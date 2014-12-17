@@ -4,13 +4,13 @@
 
 FROM kalabox/debian
 
-RUN apt-get install -y dnsmasq && apt-get clean
-
-RUN echo 'user=root' >> /etc/dnsmasq.conf
-RUN echo 'address=/.kbox/KALABOX_IP' >> /etc/dnsmasq.conf
-
 COPY start.sh /root/start.sh
-RUN chmod 777 /root/start.sh
+
+RUN \
+  apt-get install -y dnsmasq && apt-get clean && \
+  echo 'user=root' >> /etc/dnsmasq.conf && \
+  echo 'address=/.kbox/KALABOX_IP' >> /etc/dnsmasq.conf && \
+  chmod 777 /root/start.sh
 
 EXPOSE 53
 

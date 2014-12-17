@@ -2,6 +2,7 @@
 
 FROM debian:wheezy
 
-RUN apt-get update -y
-RUN apt-get install -y unzip curl
+RUN \
+  apt-get update -y && \
+  apt-get install -y unzip curl
 
