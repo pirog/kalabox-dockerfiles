@@ -16,19 +16,22 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN \
   apt-get update -y && \
   curl -sL https://deb.nodesource.com/setup | bash - && \
-  apt-get install -y nodejs npm && \
-  mkdir /srv/hipache && \
-  curl -L https://github.com/kalabox/hipache/archive/0.3.1-kalabox.tar.gz > /tmp/hipache.tar.gz && \
-  tar -xzvf /tmp/hipache.tar.gz --strip-components=1 -C /srv/hipache && \
-  npm install -g /srv/hipache --production && \
-  mkdir -p /var/log/hipache
+  apt-get install -y supervisor nodejs npm redis-server && \
+  mkdir ./hipache && \
+  curl -L https://github.com/kalabox/hipache/archive/0.3.1.tar.gz > /tmp/hipache.tar.gz && \
+  tar -xzvf /tmp/hipache.tar.gz --strip-components=1 -C ./hipache && \
+  npm install --prefix=/usr/local -g ./hipache --production && \
+  mkdir -p /var/log/hipache && \
+  mv ./hipache/supervisord.conf /etc/supervisor/conf.d/supervisord.conf && \
+  rm -rf /tmp/*
 
 ENV NODE_ENV production
 
 EXPOSE 80
-EXPOSE 443
+EXPOSE 6379
 
-CMD [ "/usr/bin/hipache", "-c", "/etc/hipache/config.json" ]
+CMD ["supervisord", "-n"]
+
 
 ```
 
