@@ -10,11 +10,14 @@ Please feel free to use them for your other things.
 The base of almost all the other images.
 
 ```
+
 # docker build -t kalabox/debian .
 
 FROM debian:wheezy
 
-RUN apt-get update -y
-RUN apt-get install -y unzip curl
+RUN \
+  apt-get update -y && \
+  apt-get install -y unzip curl
+
 ```
 
