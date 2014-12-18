@@ -32,6 +32,4 @@ EXPOSE 6379
 
 CMD ["supervisord", "-n"]
 
-
 ```
-
