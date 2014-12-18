@@ -7,21 +7,18 @@ A small little container that acts as the SkyDock executable
 
 # A small little container that acts as the SkyDock executable
 # docker build -t kalabox/skydock .
-# docker run -d -p 172.17.42.1:53:53/udp --name kalabox_skydns kalabox/skydns
+# docker run -d --volumes-from kalabox_data -v /var/run/docker.sock:/docker.sock -v /skydock.js:/skydock.js --name kalabox_skydock kalabox/skydock
+# may still need to append:
+# -ttl 30 -environment dev -s /docker.sock -domain kbox -name kalabox_skydns -plugins /data/config/skydock.js
 
 FROM kalabox/debian
 
 RUN \
-  curl -L https://github.com/kalabox/skydns1/releases/download/v0.2.0/skydns > /skydns && \
-  chmod 777 /skydns
+  curl -L https://github.com/kalabox/skydock/releases/download/v0.2.0/skydock > /skydock && \
+  chmod 777 /skydock
 
-VOLUME ["/data"]
-
-EXPOSE 8080
-EXPOSE 53/udp
-
-ENTRYPOINT ["/skydns", "-http", "0.0.0.0:8080", "-dns", "0.0.0.0:53"]
-CMD ["-nameserver", "8.8.8.8:53", "-domain", "kbox"]
+ENTRYPOINT ["/skydock", "-ttl", "30", "-environment", "dev"]
+CMD ["-s", "/docker.sock", "-domain", "kbox", "-name", "kalabox_skydns", "-plugins", "/data/config/skydock.js"]
 
 ```
 
