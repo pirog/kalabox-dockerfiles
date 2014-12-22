@@ -6,9 +6,12 @@
 
 FROM kalabox/debian
 
+COPY ./config/skydock.js /data/config/skydock.js
+
 RUN \
   curl -L https://github.com/kalabox/skydock/releases/download/v0.2.0/skydock > /skydock && \
-  chmod 777 /skydock
+  chmod 777 /skydock && \
+  chmod 777 /data/config/skydock.js
 
 ENTRYPOINT ["/skydock", "-ttl", "30", "-environment", "dev"]
 CMD ["-s", "/docker.sock", "-domain", "kbox", "-name", "kalabox_skydns", "-plugins", "/data/config/skydock.js"]
