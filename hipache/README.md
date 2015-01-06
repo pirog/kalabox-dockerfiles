@@ -22,13 +22,16 @@ RUN \
   tar -xzvf /tmp/hipache.tar.gz --strip-components=1 -C ./hipache && \
   npm install --prefix=/usr/local -g ./hipache --production && \
   mkdir -p /var/log/hipache && \
-  mv ./hipache/supervisord.conf /etc/supervisor/conf.d/supervisord.conf && \
   rm -rf /tmp/*
+
+COPY ./config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+COPY ./config/redis.conf /src/redis/redis.conf
+COPY ./config/hipache.conf /src/hipache/config.json
 
 ENV NODE_ENV production
 
 EXPOSE 80
-EXPOSE 6379
+EXPOSE 8160
 
 CMD ["supervisord", "-n"]
 
