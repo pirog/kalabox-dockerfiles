@@ -6,6 +6,8 @@ FROM kalabox/debian
 
 ENV DEBIAN_FRONTEND noninteractive
 
+VOLUME ["/var/lib/redis"]
+
 RUN \
   apt-get update -y && \
   curl -sL https://deb.nodesource.com/setup | bash - && \
