@@ -12,6 +12,7 @@ The base of almost all the other images.
 ```
 
 # docker build -t kalabox/debian .
+# yes
 
 FROM debian:wheezy
 
