@@ -21,7 +21,7 @@ RUN \
 
 COPY ./config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY ./config/redis.conf /src/redis/redis.conf
-COPY ./config/hipache.conf /src/hipache/config.json
+COPY ./config/hipache.json /src/hipache/config.json
 
 ENV NODE_ENV production
 
