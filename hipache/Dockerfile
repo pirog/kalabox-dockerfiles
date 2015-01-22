@@ -2,7 +2,7 @@
 # docker build -t kalabox/hipache .
 # docker run -d -p 80:80 -p 6379:6379 --name kalabox_hipache kalabox/hipache
 
-FROM kalabox/debian
+FROM kalabox/debian:master
 
 ENV DEBIAN_FRONTEND noninteractive
 

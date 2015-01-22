@@ -3,7 +3,7 @@
 # docker run -d -p 172.17.42.1:53:53/udp --name kalabox_skydns kalabox/skydns
 # may still need to append: -nameserver 8.8.8.8:53 -domain kbox to run
 
-FROM kalabox/debian
+FROM kalabox/debian:master
 
 RUN \
   curl -L https://github.com/kalabox/skydns1/releases/download/v0.2.0/skydns > /skydns && \
