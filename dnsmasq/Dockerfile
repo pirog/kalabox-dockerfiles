@@ -2,7 +2,7 @@
 # docker build -t kalabox/dnsmasq .
 # docker run -d -e KALABOX_IP=1.3.3.7 -p 1.3.3.7:53:53/udp --name kalabox_dnsmasq kalabox/dnsmasq
 
-FROM kalabox/debian
+FROM kalabox/debian:stable
 
 COPY start.sh /root/start.sh
 

@@ -4,7 +4,7 @@
 # may still need to append:
 # -ttl 30 -environment dev -s /docker.sock -domain kbox -name kalabox_skydns -plugins /data/config/skydock.js
 
-FROM kalabox/debian
+FROM kalabox/debian:stable
 
 COPY ./config/skydock.js /data/config/skydock.js
 
