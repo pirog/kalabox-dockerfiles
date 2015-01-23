@@ -5,10 +5,10 @@
         "workers": 10,
         "maxSockets": 100,
         "deadBackendTTL": 30,
-        "tcpTimeout": 30,
+        "tcpTimeout": 90,
         "retryOnError": 3,
         "deadBackendOn500": true,
-        "httpKeepAlive": true
+        "httpKeepAlive": false
     },
     "driver": ["redis://127.0.0.1:8160"]
 }
