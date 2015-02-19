@@ -2,10 +2,13 @@
 
 # We need to use this fauxbin until the resolution of
 # https://github.com/syncthing/syncthing/issues/1056
-rm -f /data/.stfolder
+mv /data/.stfolder /tmp/.stfolder
 
 # We need to do this for SSH add now as well
 eval `ssh-agent -s` > /dev/null
 ssh-add /ssh/id_rsa > /dev/null
 
 git "$@"
+
+# Move this back
+mv /tmp/.stfolder /data/.stfolder
