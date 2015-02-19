@@ -9,7 +9,6 @@ A simple plugin to add git commands to your apps.
 
 FROM kalabox/debian:stable
 
-# Install Nginx.
 RUN \
   apt-get update && \
   apt-get install -y git-core && \
@@ -23,6 +22,7 @@ COPY ssh-config /root/.ssh/config
 RUN chmod +x /usr/local/bin/kgit
 
 WORKDIR /data
+ENTRYPOINT ["/usr/local/bin/kgit"]
 
 
 ```

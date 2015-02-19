@@ -8,4 +8,4 @@ rm -f /data/.stfolder
 eval `ssh-agent -s` > /dev/null
 ssh-add /ssh/id_rsa > /dev/null
 
-git $@
+git "$@"
