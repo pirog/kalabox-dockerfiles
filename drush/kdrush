@@ -2,6 +2,6 @@
 
 # We need to do this for SSH add now as well
 eval `ssh-agent -s` > /dev/null
-ssh-add /ssh/id_rsa > /dev/null
+ssh-add /ssh/.ssh/id_rsa > /dev/null
 
 $DRUSH_VERSION "$@"
