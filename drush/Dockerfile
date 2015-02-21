@@ -10,8 +10,10 @@ RUN \
   curl -sS https://getcomposer.org/installer | php && \
   mv composer.phar /usr/local/bin/composer && \
   ln -s /usr/local/bin/composer /usr/bin/composer && \
+  git clone --depth 1 --branch 5.11.0 https://github.com/drush-ops/drush.git /usr/local/src/drush5 && \
   git clone --depth 1 --branch 6.5.0 https://github.com/drush-ops/drush.git /usr/local/src/drush6 && \
   git clone --depth 1 --branch 7.0.0-alpha8 https://github.com/drush-ops/drush.git /usr/local/src/drush7 && \
+  ln -s /usr/local/src/drush5/drush /usr/bin/drush5 && \
   ln -s /usr/local/src/drush6/drush /usr/bin/drush6 && \
   ln -s /usr/local/src/drush7/drush /usr/bin/drush7 && \
   cd /usr/local/src/drush7 && composer install --no-dev
