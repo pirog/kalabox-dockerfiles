@@ -13,6 +13,6 @@ ADD ./config.xml /etc/syncthing/config.xml
 ADD ./syncthing-supervisor.conf /etc/supervisor/conf.d/syncthing-supervisor.conf
 ADD ./start.sh /start.sh
 
-EXPOSE 8080 22000 21025/udp 21026/udp
+EXPOSE 60008 22000 21025/udp 21026/udp
 
 CMD ["/bin/bash", "/start.sh"]

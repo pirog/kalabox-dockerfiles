@@ -1,6 +1,6 @@
 <configuration version="7">
     <gui enabled="true" tls="false">
-        <address>0.0.0.0:8080</address>
+        <address>0.0.0.0:60008</address>
         <apikey>1B-YGWshy-KP55mN06eLzaA9EXsxeU5t</apikey>
     </gui>
     <options>
