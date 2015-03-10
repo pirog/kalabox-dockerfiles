@@ -9,7 +9,7 @@ COPY start.sh /root/start.sh
 RUN \
   apt-get install -y dnsmasq && apt-get clean && \
   echo 'user=root' >> /etc/dnsmasq.conf && \
-  echo 'address=/.kbox/KALABOX_IP' >> /etc/dnsmasq.conf && \
+  echo 'address=/KALABOX_DOMAIN/KALABOX_IP' >> /etc/dnsmasq.conf && \
   chmod 777 /root/start.sh
 
 EXPOSE 53

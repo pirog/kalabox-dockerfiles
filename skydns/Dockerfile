@@ -15,4 +15,3 @@ EXPOSE 8080
 EXPOSE 53/udp
 
 ENTRYPOINT ["/skydns", "-http", "0.0.0.0:8080", "-dns", "0.0.0.0:53"]
-CMD ["-nameserver", "8.8.8.8:53", "-domain", "kbox"]
