@@ -3,6 +3,7 @@
 FROM kalabox/nginx:stable
 
 RUN ln -s /src/config/nginx/start.sh /start.sh
+RUN chmod 777 /start.sh
 
 # Install PHP.
 RUN \
