@@ -2,8 +2,7 @@
 
 FROM kalabox/nginx:stable
 
-RUN ln -s /src/config/nginx/start.sh /start.sh
-RUN chmod 777 /start.sh
+
 
 # Install PHP.
 RUN \
@@ -25,8 +24,12 @@ RUN ln -s /src/config/php/20-apc.ini /etc/php5/conf.d/20-apc.ini
 RUN rm /etc/php5/conf.d/20-xdebug.ini
 RUN ln -s /src/config/php/20-xdebug.ini /etc/php5/conf.d/20-xdebug.ini
 
+RUN rm /root/start.sh
+COPY start.sh /root/start.sh
+RUN chmod 777 /root/start.sh
+
 # Define default command.
-CMD ["/start.sh"]
+CMD ["/root/start.sh"]
 
 # Expose ports.
 EXPOSE 80
