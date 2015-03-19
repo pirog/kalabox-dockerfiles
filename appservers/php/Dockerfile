@@ -2,8 +2,6 @@
 
 FROM kalabox/nginx:stable
 
-
-
 # Install PHP.
 RUN \
   apt-get update && \
