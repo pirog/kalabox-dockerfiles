@@ -1,0 +1,90 @@
+#!/bin/bash
+PHP_VERSION="${1}"
+
+if [[ ${1} =~ ([0-9]+\.[0-9]+)\.[0-9]+ ]]; then
+  PHP_SHORT_VERSION=${BASH_REMATCH[1]}
+else
+  echo "Wrong version number given"
+  exit 1
+fi
+
+PHPBREW_PATH="/root/.phpbrew/"
+PHPBREW_PHP_PATH="${PHPBREW_PATH}php/php-${1}/"
+PHPBREW_MODULE_PATH="${PHPBREW_PATH}modules/"
+
+phpbrew -d install ${PHP_VERSION} -- \
+  --disable-dba \
+  --disable-debug \
+  --disable-posix \
+  --disable-rpath \
+  --disable-sysvmsg \
+  --disable-sysvsem \
+  --disable-sysvshm \
+  --enable-apm \
+  --enable-bcmath \
+  --enable-calendar \
+  --enable-dom \
+  --enable-exif \
+  --enable-fileinfo \
+  --enable-fpm \
+  --enable-ftp \
+  --enable-gd-native-ttf \
+  --enable-json \
+  --enable-mbstring \
+  --enable-oauth \
+  --enable-pdo \
+  --enable-phar \
+  --enable-redis \
+  --enable-shmop \
+  --enable-soap \
+  --enable-sockets \
+  --enable-ucd-snmp-hack \
+  --enable-wddx \
+  --enable-xml \
+  --enable-xmlreader \
+  --enable-xmlwriter \
+  --enable-zip \
+  --with-bz2 \
+  --with-curl=/usr \
+  --with-freetype-dir=/usr \
+  --with-gd \
+  --with-gettext \
+  --with-gmp \
+  --with-iconv \
+  --with-imagick \
+  #--with-imap \
+  #--with-imap-ssl \
+  --with-jpeg-dir=/usr \
+  --with-kerberos \
+  --with-layout=GNU \
+  --with-ldap \
+  --with-libxml-dir=/usr \
+  #--with-libdir=lib64 \
+  --with-mcrypt \
+  --with-mhash \
+  --with-mysql=mysqlnd \
+  --with-mysqli=mysqlnd \
+  --with-openssl \
+  --with-pcre-regex=/usr \
+  --with-pdo-mysql \
+  --with-pdo-pgsql \
+  --with-pdo-sqlite \
+  --with-pgsql \
+  --with-pic \
+  --with-png-dir=/usr \
+  #--with-t1lib=/usr \
+  --with-unixODBC=/usr \
+  --with-xpm-dir=/usr \
+  --with-xsl \
+  --with-zlib \
+  --without-gdbm \
+  --without-pear \
+  --without-pspell
+
+#phpbrew ext install --sp --so ${PHP_VERSION} +dev
+#need to enable as well
+
+#not yet
+#phpbrew clean ${PHP_VERSION}
+#rm -R /root/.phpbrew/build/php-${PHP_VERSION}
+#rm -R /root/.phpbrew/distfiles/*
