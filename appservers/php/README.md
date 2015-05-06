@@ -5,39 +5,35 @@ A container that can run and server php applications.
 
 ```
 
-# docker build -t kalabox/php-appserver .
+# docker build -t kalabox/php-appserver:stable .
 
 FROM kalabox/nginx:stable
 
-# Install PHP.
 RUN \
   apt-get update && \
-  apt-get -y install php5-fpm php5-cli php5-gd php5-ldap php5-mcrypt php5-curl php5-mysqlnd php5-xdebug php-apc
+  apt-get -y install php5-cli libgmp10 libltdl7 libmcrypt4 libpq5 libicu48 && \
+  cd /tmp && \
+  curl -L -O https://github.com/phpbrew/phpbrew/raw/master/phpbrew && \
+  chmod +x /tmp/phpbrew && \
+  mv /tmp/phpbrew /usr/bin/phpbrew && \
+  phpbrew init && \
+  echo "source /root/.phpbrew/bashrc" >> /root/.bashrc && \
+  ln -s /.phpbrew /root/.phpbrew
 
-# The data container will manage these config files.
-# php.ini
-RUN rm /etc/php5/fpm/php.ini
-RUN ln -s /src/config/php/php.ini /etc/php5/fpm/php.ini
-RUN sed -i 's/;daemonize = yes/daemonize = no/g' /etc/php5/fpm/php-fpm.conf
-# pool conf
-RUN rm /etc/php5/fpm/pool.d/www.conf
-RUN ln -s /src/config/php/www.conf /etc/php5/fpm/pool.d/www.conf
-#20-apc.ini
-RUN rm /etc/php5/conf.d/20-apc.ini
-RUN ln -s /src/config/php/20-apc.ini /etc/php5/conf.d/20-apc.ini
-#20-xdebug.ini
-RUN rm /etc/php5/conf.d/20-xdebug.ini
-RUN ln -s /src/config/php/20-xdebug.ini /etc/php5/conf.d/20-xdebug.ini
+RUN \
+  cd /root/.phpbrew && \
+  curl -L "http://github.com/kalabox/phpbrewer/releases/download/v0.1.0/php.tar.gz" | tar -zvx && \
+  rm /root/start.sh
 
-RUN rm /root/start.sh
+ENV PHP_VERSION 5.4.36
+
 COPY start.sh /root/start.sh
-RUN chmod 777 /root/start.sh
+RUN chmod +x /root/start.sh
 
-# Define default command.
 CMD ["/root/start.sh"]
 
-# Expose ports.
 EXPOSE 80
 EXPOSE 443
+
 
 ```

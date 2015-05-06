@@ -1,4 +1,4 @@
-# docker build -t kalabox/nginx .
+# docker build -t kalabox/nginx:stable .
 
 FROM kalabox/debian:stable
 

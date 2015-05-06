@@ -11,7 +11,7 @@ The base of almost all the other images.
 
 ```
 
-# docker build -t kalabox/debian .
+# docker build -t kalabox/debian:stable .
 # yes
 
 FROM debian:wheezy

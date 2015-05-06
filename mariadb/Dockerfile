@@ -1,4 +1,4 @@
-# docker build -t kalabox/mariadb .
+# docker build -t kalabox/mariadb:stable .
 
 FROM kalabox/debian:stable
 
@@ -8,7 +8,11 @@ RUN \
   apt-key adv --recv-keys --keyserver keyserver.ubuntu.com --recv 0xcbcb082a1bb943db && \
   add-apt-repository 'deb http://sfo1.mirrors.digitalocean.com/mariadb/repo/10.0/debian wheezy main' && \
   apt-get update -y && \
-  DEBIAN_FRONTEND=noninteractive apt-get install -y mariadb-server && apt-get clean
+  DEBIAN_FRONTEND=noninteractive apt-get install -y mariadb-server && \
+  apt-get clean -y && \
+  apt-get autoclean -y && \
+  apt-get autoremove -y && \
+  rm -rf /var/lib/{apt,dpkg,cache,log}/
 
 # The data container will manage these config files.
 # @todo: we can't do this on Windows yet because VBOX sharing sets all
@@ -20,11 +24,14 @@ RUN \
 
 RUN rm /etc/mysql/my.cnf
 COPY my.cnf /etc/mysql/my.cnf
+COPY start.sh /start.sh
+RUN chmod +x /start.sh
 
-User root
+#RUN rm -Rf /var/lib/mysql
+#RUN mysql_install_db --user=root --ldata=/sql
 
 # Define default command.
-CMD ["mysqld_safe"]
+CMD ["/start.sh"]
 
 # Expose ports.
 EXPOSE 3306

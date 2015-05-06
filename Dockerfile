@@ -1,4 +1,4 @@
-# docker build -t kalabox/debian .
+# docker build -t kalabox/debian:stable .
 
 FROM debian:wheezy
 

@@ -5,7 +5,7 @@ An nginx container meant to be run in tandem with php-fpm
 
 ```
 
-# docker build -t kalabox/nginx .
+# docker build -t kalabox/nginx:stable .
 
 FROM kalabox/debian:stable
 

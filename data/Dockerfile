@@ -1,7 +1,8 @@
-# docker build -t kalabox/data .
+# docker build -t kalabox/data:stable .
 FROM busybox
 
-# Soon to be deprecated
+# This exists just for legacy
+# Will deprecate soon
 VOLUME ["/data"]
 
 # App code goes here
@@ -9,5 +10,6 @@ VOLUME ["/code"]
 
 # Services that require data persistence go here
 VOLUME ["/sql"]
+VOLUME ["/other"]
 
 CMD ["/bin/true"]

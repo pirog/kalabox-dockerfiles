@@ -5,7 +5,7 @@ Running php 5.4 via PHP-FPM in a container
 
 ```
 
-# docker build -t kalabox/php-fpm .
+# docker build -t kalabox/php-fpm:stable .
 
 FROM kalabox/debian:stable
 

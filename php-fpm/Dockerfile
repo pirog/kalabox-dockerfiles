@@ -1,4 +1,4 @@
-# docker build -t kalabox/php-fpm .
+# docker build -t kalabox/php-fpm:stable .
 
 FROM kalabox/debian:stable
 
