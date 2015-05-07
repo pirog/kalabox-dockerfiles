@@ -14,7 +14,6 @@ RUN \
   apt-get update && \
   apt-get install -y nginx dnsutils && \
   apt-get update -y && \
-  apt-get install -y unzip curl rsync git-core && \
   apt-get clean -y && \
   apt-get autoclean -y && \
   apt-get autoremove -y && \
@@ -37,6 +36,7 @@ CMD ["/root/start.sh"]
 # Expose ports.
 EXPOSE 80
 EXPOSE 443
+
 
 
 ```
