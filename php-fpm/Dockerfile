@@ -5,7 +5,11 @@ FROM kalabox/debian:stable
 # Install PHP.
 RUN \
   apt-get update && \
-  apt-get -y install php5-fpm php5-cli php5-gd php5-ldap php5-mcrypt php5-curl php5-mysqlnd php-apc
+  apt-get -y install php5-fpm php5-cli php5-gd php5-ldap php5-mcrypt php5-curl php5-mysqlnd php-apc && \
+  apt-get clean -y && \
+  apt-get autoclean -y && \
+  apt-get autoremove -y && \
+  rm -rf /var/lib/{apt,dpkg,cache,log}/
 
 # The data container will manage these config files.
 # php.ini

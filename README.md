@@ -12,13 +12,16 @@ The base of almost all the other images.
 ```
 
 # docker build -t kalabox/debian:stable .
-# yes
 
 FROM debian:wheezy
 
 RUN \
   apt-get update -y && \
-  apt-get install -y unzip curl
+  apt-get install -y unzip curl rsync git-core && \
+  apt-get clean -y && \
+  apt-get autoclean -y && \
+  apt-get autoremove -y && \
+  rm -rf /var/lib/{apt,dpkg,cache,log}/
 
 ```
 

@@ -3,7 +3,7 @@
 FROM kalabox/nginx:stable
 
 RUN \
-  apt-get update && \
+  apt-get update -y && \
   apt-get -y install php5-cli libgmp10 libltdl7 libmcrypt4 libpq5 libicu48 && \
   cd /tmp && \
   curl -L -O https://github.com/phpbrew/phpbrew/raw/master/phpbrew && \
@@ -11,7 +11,13 @@ RUN \
   mv /tmp/phpbrew /usr/bin/phpbrew && \
   phpbrew init && \
   echo "source /root/.phpbrew/bashrc" >> /root/.bashrc && \
-  ln -s /.phpbrew /root/.phpbrew
+  ln -s /.phpbrew /root/.phpbrew && \
+  apt-get update -y && \
+  apt-get install -y unzip curl rsync git-core && \
+  apt-get clean -y && \
+  apt-get autoclean -y && \
+  apt-get autoremove -y && \
+  rm -rf /var/lib/{apt,dpkg,cache,log}/
 
 RUN \
   cd /root/.phpbrew && \

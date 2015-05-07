@@ -4,5 +4,5 @@ FROM debian:wheezy
 
 RUN \
   apt-get update -y && \
-  apt-get install -y unzip curl
+  apt-get install -y unzip curl rsync git-core
 

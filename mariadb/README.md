@@ -11,6 +11,7 @@ FROM kalabox/debian:stable
 
 # Install MariaDB.
 RUN \
+  apt-get update -y && \
   apt-get install -y python-software-properties && \
   apt-key adv --recv-keys --keyserver keyserver.ubuntu.com --recv 0xcbcb082a1bb943db && \
   add-apt-repository 'deb http://sfo1.mirrors.digitalocean.com/mariadb/repo/10.0/debian wheezy main' && \
@@ -42,6 +43,7 @@ CMD ["/start.sh"]
 
 # Expose ports.
 EXPOSE 3306
+
 
 ```
 

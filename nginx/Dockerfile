@@ -5,7 +5,13 @@ FROM kalabox/debian:stable
 # Install Nginx.
 RUN \
   apt-get update && \
-  apt-get install -y nginx dnsutils && apt-get clean
+  apt-get install -y nginx dnsutils && \
+  apt-get update -y && \
+  apt-get install -y unzip curl rsync git-core && \
+  apt-get clean -y && \
+  apt-get autoclean -y && \
+  apt-get autoremove -y && \
+  rm -rf /var/lib/{apt,dpkg,cache,log}/
 
 RUN chown -R root:root /var/lib/nginx
 
