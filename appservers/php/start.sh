@@ -15,7 +15,6 @@ fi
 
 # Use our custom apc.ini
 if [ -f "/src/config/php/apc.ini" && -f "${HOME}/.phpbrew/php/php-${PHP_VERSION}/var/db/apc.ini"]; then
-  ~/.phpbrew/php/php-5.3.29/var/db
   rm ${HOME}/.phpbrew/php/php-${PHP_VERSION}/var/db/apc.ini
   cp /src/config/php/apc.ini ${HOME}/.phpbrew/php/php-${PHP_VERSION}/var/db/apc.ini
 fi
