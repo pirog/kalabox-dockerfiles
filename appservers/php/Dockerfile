@@ -21,7 +21,7 @@ RUN \
 
 RUN \
   cd /root/.phpbrew && \
-  curl -L "http://github.com/kalabox/phpbrewer/releases/download/v0.2.0/php.tar.gz" | tar -zvx && \
+  curl -L "http://github.com/kalabox/phpbrewer/releases/download/v0.2.1/php.tar.gz" | tar -zvx && \
   rm /root/start.sh
 
 ENV PHP_VERSION 5.4.40

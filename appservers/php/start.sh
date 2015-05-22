@@ -22,10 +22,17 @@ fi
 # Add some xdebug things
 # todo: actually check and add lines only if needed
 if [ -f "${HOME}/.phpbrew/php/php-${PHP_VERSION}/var/db/xdebug.ini" ]; then
-  sed -i '$a xdebug.remote_host="10.13.37.1"' /root/.phpbrew/php/php-${PHP_VERSION}/var/db/xdebug.ini
-  sed -i '$a xdebug.remote_enable = 1' /root/.phpbrew/php/php-${PHP_VERSION}/var/db/xdebug.ini
+  sed -i '$a xdebug.remote_host="10.13.37.1"' ${HOME}/.phpbrew/php/php-${PHP_VERSION}/var/db/xdebug.ini
+  sed -i '$a xdebug.remote_enable = 1' ${HOME}/.phpbrew/php/php-${PHP_VERSION}/var/db/xdebug.ini
   # you need to turn this on if you are not using fpm with a unix socket
   #sed -i '$a xdebug.remote_port = 9001' /root/.phpbrew/php/php-${PHP_VERSION}/var/db/xdebug.ini
+fi
+
+# Add some opcache things
+# todo: actually check and add lines only if needed
+if [ -f "${HOME}/.phpbrew/php/php-${PHP_VERSION}/var/db/opcache.ini" ]; then
+  sed -i '$a opcache.max_accelerated_files = 16229' ${HOME}/.phpbrew/php/php-${PHP_VERSION}/var/db/opcache.ini
+  sed -i '$a opcache.memory_consumption = 256' ${HOME}/.phpbrew/php/php-${PHP_VERSION}/var/db/opcache.ini
 fi
 
 /root/.phpbrew/php/php-${PHP_VERSION}/sbin/php-fpm -R
