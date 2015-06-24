@@ -4,7 +4,7 @@ FROM debian:wheezy
 
 RUN \
   apt-get update -y && \
-  apt-get install -y unzip curl rsync git-core && \
+  apt-get install -y unzip curl rsync git-core nano && \
   apt-get clean -y && \
   apt-get autoclean -y && \
   apt-get autoremove -y && \
