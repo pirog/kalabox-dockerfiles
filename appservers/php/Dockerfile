@@ -4,7 +4,7 @@ FROM kalabox/nginx:v0.9.0
 
 RUN \
   apt-get -y update && \
-  apt-get -y install php5-cli libgmp10 libpng12-0 libltdl7 libmcrypt4 libpq5 libicu48 libxslt1.1 && \
+  apt-get -y install php5-cli libgmp10 libpng12-0 libjpeg8 libltdl7 libmcrypt4 libpq5 libicu48 libxslt1.1 && \
   cd /tmp && \
   curl -L -O https://github.com/phpbrew/phpbrew/raw/master/phpbrew && \
   chmod +x /tmp/phpbrew && \
