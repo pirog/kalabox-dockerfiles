@@ -17,7 +17,7 @@ RUN \
   apt-get clean -y && \
   apt-get autoclean -y && \
   apt-get autoremove -y && \
-  rm -rf /var/lib/{apt,dpkg,cache,log}/
+  rm -rf /var/lib/apt/* && rm -rf && rm -rf /var/lib/cache/* && rm -rf /var/lib/log/* && rm -rf /tmp/*
 
 RUN \
   cd /root/.phpbrew && \
