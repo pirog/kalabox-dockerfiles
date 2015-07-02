@@ -1,6 +1,6 @@
 # docker build -t kalabox/php-appserver:stable .
 
-FROM kalabox/nginx:stable
+FROM kalabox/nginx:v0.9.0
 
 RUN \
   apt-get update -y && \
