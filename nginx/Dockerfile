@@ -32,7 +32,6 @@ RUN \
 
 # The data container will manage these config files.
 RUN rm /etc/nginx/nginx.conf
-RUN ls -lsa /etc/nginx
 RUN ln -s /src/config/nginx/nginx.conf /etc/nginx/nginx.conf
 RUN ln -s /src/config/nginx/site.conf /etc/nginx/sites-enabled/default
 

@@ -10,8 +10,8 @@ A container that can run and server php applications.
 FROM kalabox/nginx:v0.9.0
 
 RUN \
-  apt-get update -y && \
-  apt-get -y install php5-cli libgmp10 libltdl7 libmcrypt4 libpq5 libicu48 && \
+  apt-get -y update && \
+  apt-get -y install php5-cli libgmp10 libpng12-0 libjpeg8 libltdl7 libmcrypt4 libpq5 libicu48 libxslt1.1 && \
   cd /tmp && \
   curl -L -O https://github.com/phpbrew/phpbrew/raw/master/phpbrew && \
   chmod +x /tmp/phpbrew && \
@@ -24,7 +24,7 @@ RUN \
   apt-get clean -y && \
   apt-get autoclean -y && \
   apt-get autoremove -y && \
-  rm -rf /var/lib/{apt,dpkg,cache,log}/
+  rm -rf /var/lib/apt/* && rm -rf && rm -rf /var/lib/cache/* && rm -rf /var/lib/log/* && rm -rf /tmp/*
 
 RUN \
   cd /root/.phpbrew && \
